@@ -10,6 +10,10 @@
 
     <div class="intro">{{ page.intro }}</div>
 
+    {% for tag in page.tags.all %}
+    <a href="{% pageurl page.blog_index %}?tag={{ tag }}">{{ tag }}</a>
+    {% endfor %}
+
     {{ page.body|richtext }}
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
