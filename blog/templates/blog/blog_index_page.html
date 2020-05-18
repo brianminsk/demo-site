@@ -9,10 +9,18 @@
 
     <div class="intro">{{ page.intro|richtext }}</div>
 
-    {% for post in page.get_children %}
+    {% if request.GET.tag|length %}
+        <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+    {% endif %}
+
+    {% for post in blog_entries %}
         <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
         {{ post.specific.intro }}
         {{ post.specific.body|richtext }}
     {% endfor %}
+
+    {% if request.GET.tag|length %}
+        <p><a href="{% pageurl page %}">Return to blog index</a></p>
+    {% endif %}
 
 {% endblock %}

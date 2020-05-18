@@ -10,12 +10,17 @@
 
     <div class="intro">{{ page.intro }}</div>
 
-    {% for tag in page.tags.all %}
-    <a href="{% pageurl page.blog_index %}?tag={{ tag }}">{{ tag }}</a>
-    {% endfor %}
-
     {{ page.body|richtext }}
 
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    {% if page.tags.all.count %}
+        <div class="tags">
+            Tags: 
+            {% for tag in page.tags.all %}
+                <a href="{{ page.get_parent.url }}?tag={{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <p><a href="{{ page.get_parent.get_url }}">Return to blog index</a></p>
 
 {% endblock %}

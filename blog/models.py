@@ -48,8 +48,10 @@ class BlogPage(Page):
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
+        FieldPanel('tags'),
     ]
 
     promote_panels = Page.promote_panels + [
-        FieldPanel('tags'),
+        # moved to content_panels
+        # FieldPanel('tags'),
     ]
