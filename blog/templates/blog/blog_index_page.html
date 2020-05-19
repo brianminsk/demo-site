@@ -15,8 +15,10 @@
 
     {% for post in blog_entries %}
         <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        {{ post.specific.intro }}
-        {{ post.specific.body|richtext }}
+        <i>{{ post.specific.intro }}</i>
+        {% filter truncatewords_html:30 %}
+            {{ post.specific.body|richtext }}
+        {% endfilter %}
     {% endfor %}
 
     {% if request.GET.tag|length %}
